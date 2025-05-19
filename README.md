@@ -1,59 +1,93 @@
-# HunterApp
+# Hunt the Wumpus – Suposiciones del juego
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.12.
+Este proyecto implementa una versión del clásico juego *Hunt the Wumpus* como SPA en Angular, siguiendo las especificaciones proporcionadas en la prueba técnica.
 
-## Development server
+A lo largo del desarrollo se han hecho algunas suposiciones razonadas allí donde el enunciado no especificaba ciertos comportamientos. 
+Estas decisiones permiten mantener una lógica clara, y pueden adaptarse fácilmente si se requiere.
 
-To start a local development server, run:
+## Suposiciones realizadas
+
+- **Inicio del juego:**
+  - El cazador empieza siempre en la casilla `(0, 0)`, que estará libre de peligros (sin pozo ni Wumpus).
+  - Puede moverse libremente por el tablero (no hay restricciones en casillas ya visitadas).
+
+- **Wumpus:**
+  - Hay un único Wumpus por partida.
+  - El Wumpus permanece inmóvil durante todo el juego.
+
+- **Oro:**
+  - Hay un único lingote de oro por partida.
+  - El objetivo del juego es encontrar el oro y volver a la casilla de inicio.
+
+- **Flechas:**
+  - La cantidad de flechas disponibles es configurable al inicio. 
+  - Por defecto, se asigna 1 flecha.
+  - La flecha se dispara en línea recta, en la dirección actual del cazador, y avanza hasta que impacta contra el Wumpus o contra un muro.
+
+- **Percepciones:**
+  - El cazador percibe elementos solo desde la casilla que ocupa:
+    - **Hedor:** si está en una casilla adyacente al Wumpus.
+    - **Brisa:** si está en una casilla adyacente a un pozo.
+    - **Brillo:** si está en la casilla del oro.
+    - **Grito:** si la flecha alcanza y mata al Wumpus.
+    - **Choque:** si intenta avanzar fuera del tablero.
+  
+- **Pozos:**
+  - El número de pozos es configurable en la pantalla de inicio.
+  - Si el cazador cae en un pozo, la partida termina (muerte inmediata).
+
+- **Interfaz y flujo de juego:**
+  - La aplicación contiene dos pantallas:
+    - Una para configurar los parámetros del juego (tamaño del tablero, número de pozos, flechas).
+    - Otra para jugar la partida mediante controles simples.
+
+**_Estas suposiciones están sujetas a revisión en caso de recibir una aclaración oficial o requerimiento distinto._**
+
+## Servidor de desarrollo
+
+Para iniciar un servidor de desarrollo local, ejecuta:
 
 ```bash
 ng serve
 ```
+Este proyecto fue generado usando [Angular CLI](https://github.com/angular/angular-cli) versión 19.2.12.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Una vez que el servidor esté en ejecución, abre tu navegador y navega a `http://localhost:5700/`. 
+La aplicación se recargará automáticamente cuando modifiques cualquiera de los archivos fuente.
 
-## Code scaffolding
+Esto compilará tu proyecto y almacenará los artefactos de compilación en el directorio `dist/`. Por defecto, la compilación de producción optimiza tu aplicación para rendimiento y velocidad.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-```bash
-ng generate component component-name
-```
+## Compilación
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Para compilar el proyecto ejecuta:
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Herramientas de desarrollo
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### Pruebas unitarias
+Para ejecutar las pruebas unitarias con el ejecutor de pruebas [Jest](https://jestjs.io/es-ES/), usa el siguiente comando:
 
 ```bash
-ng e2e
+npm test
+```
+### Testing
+El proyecto utiliza [Testing Library](https://testing-library.com/) para las pruebas de componentes, lo que nos permite escribir pruebas más robustas y centradas en el usuario. Enfoque en probar el comportamiento desde la perspectiva del usuario final.
+
+### Linting y Formateo
+El proyecto está configurado con:
+- **ESLint**: Para el análisis estático del código y asegurar la calidad del código
+- **Prettier**: Para el formateo automático del código y mantener un estilo consistente
+
+Para ejecutar el linter:
+```bash
+npm run lint
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Para formatear el código automáticamente:
+```bash
+npm run format
+```
