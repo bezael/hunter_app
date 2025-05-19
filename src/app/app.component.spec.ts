@@ -1,12 +1,16 @@
+import { Router } from '@angular/router';
 import { render, screen } from '@testing-library/angular';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  it('render the title', async () => {
+  it('should render the app container', async () => {
+    const routerSpy = jest.fn();
     await render(AppComponent, {
-      componentProperties: { title: 'Testing title' },
+      providers: [ { provide: Router, useValue: routerSpy }]
     });
-    const title = screen.getByRole('heading', { name: 'Hello, Testing title' });
-    expect(title).toBeInTheDocument();
+    
+    const container = screen.getByTestId('app-container');
+    expect(container).toBeInTheDocument();
   });
+
 });
