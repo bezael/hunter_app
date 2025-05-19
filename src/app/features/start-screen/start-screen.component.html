@@ -1,1 +1,57 @@
-<p>start-screen works!</p>
+<div class="start-screen">
+  <h2>Hunt the Wumpus</h2>
+  <form [formGroup]="configForm" (ngSubmit)="startGame()">
+    <label for="boardSize">
+      Board size (n x n):
+      <input 
+        type="number" 
+        id="boardSize"
+        formControlName="boardSize" 
+        min="4" 
+        max="10"
+        placeholder="Enter board size (4-10)" />
+    </label>
+    <app-form-error
+      [show]="isFieldValid('boardSize')"
+      message="Must be between 4 and 10."
+      fieldId="boardSize"
+    />
+
+    <label for="numPits">
+      Number of wells:
+      <input 
+        type="number" 
+        id="numPits"
+        formControlName="numPits" 
+        min="1"
+        placeholder="Enter number of wells" />
+    </label>
+    <app-form-error
+      [show]="isFieldValid('numPits')"
+      message="Must be at least 1."
+      fieldId="numPits"
+    />
+
+    <label for="numArrows">
+      Number of arrows:
+      <input 
+        type="number" 
+        id="numArrows"
+        formControlName="numArrows" 
+        min="1"
+        placeholder="Enter number of arrows" />
+    </label>
+    <app-form-error
+      [show]="isFieldValid('numArrows')"
+      message="Must be at least 1."
+      fieldId="numArrows"
+    />
+
+    <button 
+      type="submit" 
+      class="btn btn-primary"
+      [disabled]="configForm.invalid">
+      Start game
+    </button>
+  </form>
+</div>
