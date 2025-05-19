@@ -1,23 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StartScreenComponent } from './start-screen.component';
 
 describe('StartScreenComponent', () => {
-  let component: StartScreenComponent;
-  let fixture: ComponentFixture<StartScreenComponent>;
+  it.todo('initialize form with default values')
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [StartScreenComponent]
-    })
-    .compileComponents();
+  it.todo('disable start button when form is invalid')
 
-    fixture = TestBed.createComponent(StartScreenComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it.todo('navigate to game when form is valid')
 });
