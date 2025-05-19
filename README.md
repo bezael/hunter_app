@@ -34,6 +34,7 @@ Estas decisiones permiten mantener una lógica clara, y pueden adaptarse fácilm
   
 - **Pozos:**
   - El número de pozos es configurable en la pantalla de inicio.
+  - Por defecto, se asigna 3 pozos.
   - Si el cazador cae en un pozo, la partida termina (muerte inmediata).
 
 - **Interfaz y flujo de juego:**
