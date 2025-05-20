@@ -10,18 +10,20 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
       </div>
     }
   `,
-  styles: [`
-    .error-message {
-      color: var(--color-error);
-      font-size: var(--font-size-sm);
-      margin-top: var(--spacing-1);
-    }
-  `]
+  styles: [
+    `
+      .error-message {
+        color: var(--color-error);
+        font-size: var(--font-size-sm);
+        margin-top: var(--spacing-1);
+      }
+    `,
+  ],
 })
 export class FormErrorComponent {
   show = input<boolean>(false);
   message = input<string>('');
   fieldId = input<string>('');
-  
+
   errorId = computed(() => `${this.fieldId()}-error`);
-} 
+}

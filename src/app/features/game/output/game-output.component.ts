@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-game-output',
   imports: [],
   templateUrl: './game-output.component.html',
-  styleUrl: './game-output.component.scss'
+  styleUrl: './game-output.component.scss',
 })
-export class GameOutputComponent {
-
-}
+export class GameOutputComponent {}
