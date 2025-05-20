@@ -1,15 +1,15 @@
-<div class="game-board">
+<div class="game-board" data-testId="game-board">
   <div class="board-grid">
-    @for (row of board(); track row) {
-      <div class="board-row">
-        @for (cell of row; track cell) {
-          <div class="cell" [class]="getCellClass(cell)">
-            @if (cell !== '') {
-              <span class="icon">{{ getCellContent(cell) }}</span>
-            }
-          </div>
+    @for (row of board(); track row; let index = $index) {
+    <div class="board-row" [attr.data-testid]="'board-row-' + index">
+      @for (cell of row; track cell) {
+      <div class="cell" [class]="getCellClass(cell)" [attr.data-testid]="'board-cell-' + index">
+        @if (cell !== '') {
+        <span class="icon">{{ getCellContent(cell) }}</span>
         }
       </div>
+      }
+    </div>
     }
   </div>
 </div>
