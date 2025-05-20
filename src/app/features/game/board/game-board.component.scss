@@ -3,44 +3,46 @@
   justify-content: center;
   align-items: center;
   padding: var(--spacing-lg);
+  margin-top: var(--spacing-4);
+
   .board-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      background-color: var(--color-dark-blue-grey);
-      padding: 2px;
-      border-radius: var(--border-radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background-color: var(--color-dark-blue-grey);
+    padding: 2px;
+    border-radius: var(--border-radius-lg);
+  }
+
+  .board-row {
+    display: flex;
+    gap: 2px;
+  }
+
+  .cell {
+    width: var(--spacing-20);
+    height: var(--spacing-20);
+    background-color: var(--color-dark-blue-grey-alt);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--border-radius-base);
+    transition: all 0.3s ease;
+
+    &.visited {
+      background-color: var(--color-success);
     }
-  
-    .board-row {
-      display: flex;
-      gap: 2px;
+
+    &.breeze {
+      background-color: var(--color-info);
     }
-  
-    .cell {
-      width: var(--spacing-20);
-      height: var(--spacing-20);
-      background-color: var(--color-dark-blue-grey-alt);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: var(--border-radius-base);
-      transition: all 0.3s ease;
-  
-      &.visited {
-        background-color: var(--color-success);
-      }
-  
-      &.breeze {
-        background-color: var(--color-info);
-      }
-  
-      &.stench {
-        background-color: var(--color-error);
-      }
-  
-      .icon {
-        font-size: var(--font-size-lg);
-      }
+
+    &.stench {
+      background-color: var(--color-error);
     }
+
+    .icon {
+      font-size: var(--font-size-lg);
+    }
+  }
 }
