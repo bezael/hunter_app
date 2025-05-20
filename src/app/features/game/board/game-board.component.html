@@ -1,1 +1,15 @@
-<p>game-board works!</p>
+<div class="game-board">
+  <div class="board-grid">
+    @for (row of board(); track row) {
+      <div class="board-row">
+        @for (cell of row; track cell) {
+          <div class="cell" [class]="getCellClass(cell)">
+            @if (cell !== '') {
+              <span class="icon">{{ getCellContent(cell) }}</span>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>
