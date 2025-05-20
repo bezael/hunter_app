@@ -1,14 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { StoreService } from '@shared/services/store/store.service';
 import { FormErrorComponent } from './components/form-error/form-error.component';
-import { GameConfig } from './form.model';
-
-export const DEFAULT_CONFIG: GameConfig = {
-  boardSize: 4,
-  numPits: 3,
-  numArrows: 1,
-};
+import { DEFAULT_CONFIG, FormConfig } from './form.model';
 
 @Component({
   selector: 'app-start-screen',
@@ -18,20 +13,23 @@ export const DEFAULT_CONFIG: GameConfig = {
   styleUrl: './start-screen.component.scss',
 })
 export class StartScreenComponent implements OnInit {
-  configForm!: FormGroup;
+  configForm!: FormGroup<FormConfig>;
 
   private readonly _fb = inject(FormBuilder);
   private readonly _router = inject(Router);
+  private readonly _store = inject(StoreService);
 
   ngOnInit(): void {
     this._initForm();
+    this._store.resetGame();
   }
 
   startGame() {
     if (this.configForm.valid) {
-      console.log(this.configForm.value);
+      const config = this.configForm.getRawValue();
+      this._store.updateArrows(config.numArrows);
+      this._store.updateBoard(config.boardSize);
       this._router.navigate(['/game']);
-      // TODO: Guardar en el storage service la configuración 
     }
   }
 
@@ -40,10 +38,19 @@ export class StartScreenComponent implements OnInit {
   }
 
   private _initForm(): void {
-    this.configForm = this._fb.nonNullable.group({
-      boardSize: [DEFAULT_CONFIG.boardSize, [Validators.required, Validators.min(4), Validators.max(10)]],
-      numPits: [DEFAULT_CONFIG.numPits, [Validators.required, Validators.min(1)]],
-      numArrows: [DEFAULT_CONFIG.numArrows, [Validators.required, Validators.min(1)]],
+    this.configForm = this._fb.group<FormConfig>({
+      boardSize: new FormControl(DEFAULT_CONFIG.boardSize, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.min(4), Validators.max(10)],
+      }),
+      numWells: new FormControl(DEFAULT_CONFIG.numWells, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.min(1)],
+      }),
+      numArrows: new FormControl(DEFAULT_CONFIG.numArrows, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.min(1)],
+      }),
     });
   }
 }
