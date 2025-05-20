@@ -11,6 +11,10 @@ export const routes: Routes = [
     loadComponent: () => import('./features/start-screen/start-screen.component').then(m => m.StartScreenComponent),
   },
   {
+    path: 'game',
+    loadChildren: () => import('./features/game/game.routes'),
+  },
+  {
     path: '**',
     redirectTo: '',
   },
