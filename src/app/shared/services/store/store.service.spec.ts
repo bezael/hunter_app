@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { GameBoardService } from '@app/shared/services/game-board.service';
-import { INITIAL_STATE, Position } from '@app/shared/services/store/store.model';
+import { GameBoardService } from '@shared/services/game-board/game-board.service';
+import { INITIAL_STATE, Position } from '@shared/services/store/store.model';
 import { StoreService } from './store.service';
 
 const mockGameBoardService = {
