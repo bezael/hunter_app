@@ -1,5 +1,5 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { GameBoardService } from '../game-board.service';
+import { GameBoardService } from '../game-board/game-board.service';
 import { GameState, INITIAL_STATE, Orientation, Position, Status } from './store.model';
 
 @Injectable({
