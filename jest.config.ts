@@ -5,6 +5,11 @@ const config: Config = {
   setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
   moduleDirectories: ['node_modules', '<rootDir>'],
   testMatch: ['**/+(*.)+(spec).+(ts)'],
+  moduleNameMapper: {
+    '@app/(.*)$': '<rootDir>/src/app/$1',
+    '@features/(.*)$': '<rootDir>/src/app/features/$1',
+    '@shared/(.*)$': '<rootDir>/src/app/shared/$1',
+  },
 };
 
 export default config;
