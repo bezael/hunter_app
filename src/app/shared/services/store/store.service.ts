@@ -1,6 +1,6 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { GameBoardService } from '@app/shared/services/game-board.service';
-import { GameState, INITIAL_STATE, Orientation, Position, Status } from '@shared/services/store/store.model';
+import { GameBoardService } from '../game-board.service';
+import { GameState, INITIAL_STATE, Orientation, Position, Status } from './store.model';
 
 @Injectable({
   providedIn: 'root',
