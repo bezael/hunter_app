@@ -1,28 +1,23 @@
 import { render, screen } from '@testing-library/angular';
 import { FormErrorComponent } from './form-error.component';
 
+interface SetupConfig {
+  show: boolean;
+  message: string;
+  fieldId: string;
+}
 describe('FormErrorComponent', () => {
   it('not show error message when show is false', async () => {
-    await render(FormErrorComponent, {
-      inputs: {
-        show: false,
-        message: 'Test error message',
-        fieldId: 'test-field',
-      },
-    });
+    const inputs = { show: false, message: 'Test error message', fieldId: 'test-field' };
+    await setup(inputs);
 
     const errorMessageAlert = screen.queryByRole('alert');
     expect(errorMessageAlert).not.toBeInTheDocument();
   });
 
   it('show error message when show is true', async () => {
-    await render(FormErrorComponent, {
-      inputs: {
-        show: true,
-        message: 'Test error message',
-        fieldId: 'test-field',
-      },
-    });
+    const inputs = { show: true, message: 'Test error message', fieldId: 'test-field' };
+    await setup(inputs);
 
     const errorMessageAlert = screen.getByRole('alert');
     expect(errorMessageAlert).toBeInTheDocument();
@@ -30,13 +25,9 @@ describe('FormErrorComponent', () => {
   });
 
   it('update error message when message input changes', async () => {
-    const { fixture } = await render(FormErrorComponent, {
-      inputs: {
-        show: true,
-        message: 'Initial error message',
-        fieldId: 'test-field',
-      },
-    });
+    const inputs = { show: true, message: 'Initial error message', fieldId: 'test-field' };
+    const { fixture } = await setup(inputs);
+
     const errorMessageAlert = screen.getByRole('alert');
     expect(errorMessageAlert).toHaveTextContent('Initial error message');
 
@@ -45,4 +36,12 @@ describe('FormErrorComponent', () => {
 
     expect(errorMessageAlert).toHaveTextContent('Updated error message');
   });
+
+  const setup = async (config: SetupConfig) => {
+    return await render(FormErrorComponent, {
+      inputs: {
+        ...config,
+      },
+    });
+  };
 });
