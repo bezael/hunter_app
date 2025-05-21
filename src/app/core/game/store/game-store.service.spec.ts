@@ -27,18 +27,30 @@ describe('GameStoreService', () => {
 
   it('initialize game state with default values', () => {
     const initialGameState: GameState = {
-      board: [],
+      board: {
+        width: 0,
+        height: 0,
+        wells: [],
+        cells: [],
+        walls: []
+      },
       player: {
         position: { x: 0, y: 0 },
         direction: 'NORTH',
         arrows: 3,
         isAlive: true,
+        hasGold: false
       },
       gameStatus: 'PLAYING',
       wumpus: {
         position: { x: 0, y: 0 },
         alive: false,
       },
+      gold: {
+        position: { x: 0, y: 0 },
+        collected: false
+      },
+      startPosition: { x: 0, y: 0 }
     };
 
     expect(
@@ -48,13 +60,19 @@ describe('GameStoreService', () => {
 
   fit('create a new board with the specified size and update the state', () => {
     const boardSize = 4;
-    const mockBoard = Array(boardSize).fill(Array(boardSize).fill(''));
+    const mockBoard = {
+      width: boardSize,
+      height: boardSize,
+      wells: [],
+      cells: Array(boardSize).fill(Array(boardSize).fill('')),
+      walls: []
+    };
     gameBoardService.createBoard.mockReturnValue(mockBoard);
 
     service.updateBoard(boardSize);
 
-    expect(service.state().board.length).toBe(boardSize);
-    expect(service.state().board[0].length).toBe(boardSize);
+    expect(service.state().board.cells.length).toBe(boardSize);
+    expect(service.state().board.cells[0].length).toBe(boardSize);
     expect(gameBoardService.createBoard).toHaveBeenCalledWith(boardSize);
   });
 
@@ -67,10 +85,16 @@ describe('GameStoreService', () => {
   });
 
   it('create a new board using GameBoardService and verify the service call', () => {
-    const mockBoard = [
-      ['.', 'w'],
-      ['P', '.'],
-    ];
+    const mockBoard = {
+      width: 5,
+      height: 5,
+      wells: [],
+      cells: [
+        ['.', 'w'],
+        ['P', '.'],
+      ],
+      walls: [],
+    };
 
     gameBoardService.createBoard.mockReturnValue(mockBoard);
     const boardSize = 5;

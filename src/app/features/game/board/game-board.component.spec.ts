@@ -1,4 +1,3 @@
-import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { INITIAL_STATE } from '@app/core/game/constants';
 import { GameBoardComponent } from '@app/features/game/board/game-board.component';
@@ -15,8 +14,13 @@ const fakeInitialBoard = [
 const mockGameStoreService = {
   state: jest.fn().mockReturnValue({
     ...INITIAL_STATE,
-    board: [...fakeInitialBoard],
+    board: {
+      ...INITIAL_STATE.board,
+      cells: [...fakeInitialBoard],
+    },
   }),
+  gameStatus: jest.fn().mockReturnValue('PLAYING'),
+  currentPerceptions: jest.fn().mockReturnValue([]),
 };
 
 const mockRouter = {
@@ -24,17 +28,8 @@ const mockRouter = {
 };
 
 describe('GameBoardComponent', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-  });
-
   it('render component and display initial board', async () => {
-    await render(GameBoardComponent, {
-      providers: [
-        { provide: GameStoreService, useValue: mockGameStoreService },
-        { provide: Router, useValue: mockRouter },
-      ],
-    });
+    await setup();
 
     const container = screen.getByTestId('game-board');
     expect(container).toBeInTheDocument();
@@ -47,18 +42,24 @@ describe('GameBoardComponent', () => {
   });
 
   it('navigate to /start if board is empty', async () => {
-    const emptyBoardMock = {
-      state: jest.fn().mockReturnValue({
-        ...INITIAL_STATE,
-      }),
-    };
-
-    await render(GameBoardComponent, {
-      providers: [
-        { provide: GameStoreService, useValue: emptyBoardMock },
-        { provide: Router, useValue: mockRouter },
-      ],
+    mockGameStoreService.state.mockReturnValue({
+      ...INITIAL_STATE,
+      board: {
+        ...INITIAL_STATE.board,
+        cells: [],
+      },
     });
+
+    await setup();
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/start']);
   });
+
+  const setup = async () => {
+    return await render(GameBoardComponent, {
+      providers: [
+        { provide: Router, useValue: mockRouter },
+        { provide: GameStoreService, useValue: mockGameStoreService },
+      ],
+    });
+  };
 });
