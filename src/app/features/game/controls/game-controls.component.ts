@@ -1,9 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { GameFacadeService } from '@app/core/game/services/game-facade.service';
+import { GameStoreService } from '@app/core/game/store/game-store.service';
 
 @Component({
   selector: 'app-game-controls',
-  imports: [],
   templateUrl: './game-controls.component.html',
   styleUrl: './game-controls.component.scss',
 })
-export class GameControlsComponent {}
+export class GameControlsComponent {
+  status = computed(() => this._gameStoreService.gameStatus());
+
+  private readonly _gameStoreService = inject(GameStoreService);
+
+  private readonly _gameFacadeService = inject(GameFacadeService);
+
+  move() {
+    this._gameFacadeService.move();
+  }
+
+  shoot() {
+    this._gameFacadeService.shoot();
+  }
+
+  turnLeft() {
+    this._gameFacadeService.turn('LEFT');
+  }
+
+  turnRight() {
+    this._gameFacadeService.turn('RIGHT');
+  }
+}
