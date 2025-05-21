@@ -6,18 +6,23 @@ interface SetupConfig {
   message: string;
   fieldId: string;
 }
+
+const DEFAULT_CONFIG: SetupConfig = {
+  show: false,
+  message: 'Test error message',
+  fieldId: 'test-field',
+};
+
 describe('FormErrorComponent', () => {
   it('not show error message when show is false', async () => {
-    const inputs = { show: false, message: 'Test error message', fieldId: 'test-field' };
-    await setup(inputs);
+    await setup();
 
     const errorMessageAlert = screen.queryByRole('alert');
     expect(errorMessageAlert).not.toBeInTheDocument();
   });
 
   it('show error message when show is true', async () => {
-    const inputs = { show: true, message: 'Test error message', fieldId: 'test-field' };
-    await setup(inputs);
+    await setup({ show: true });
 
     const errorMessageAlert = screen.getByRole('alert');
     expect(errorMessageAlert).toBeInTheDocument();
@@ -25,8 +30,7 @@ describe('FormErrorComponent', () => {
   });
 
   it('update error message when message input changes', async () => {
-    const inputs = { show: true, message: 'Initial error message', fieldId: 'test-field' };
-    const { fixture } = await setup(inputs);
+    const { fixture } = await setup({ show: true, message: 'Initial error message' });
 
     const errorMessageAlert = screen.getByRole('alert');
     expect(errorMessageAlert).toHaveTextContent('Initial error message');
@@ -37,11 +41,10 @@ describe('FormErrorComponent', () => {
     expect(errorMessageAlert).toHaveTextContent('Updated error message');
   });
 
-  const setup = async (config: SetupConfig) => {
+  const setup = async (config: Partial<SetupConfig> = {}) => {
+    const mergedConfig = { ...DEFAULT_CONFIG, ...config };
     return await render(FormErrorComponent, {
-      inputs: {
-        ...config,
-      },
+      inputs: mergedConfig,
     });
   };
 });
