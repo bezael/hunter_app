@@ -5,7 +5,6 @@ describe('GameBoardService', () => {
   let service: GameBoardService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
     service = TestBed.inject(GameBoardService);
   });
 
@@ -13,9 +12,9 @@ describe('GameBoardService', () => {
     const boardSize = 5;
     const board = service.createBoard(boardSize);
 
-    expect(board.length).toEqual(boardSize);
-    expect(board[0].length).toEqual(boardSize);
-    expect(board[1].length).toEqual(boardSize);
+    expect(board.cells.length).toEqual(boardSize);
+    expect(board.cells[0].length).toEqual(boardSize);
+    expect(board.cells[1].length).toEqual(boardSize);
   });
 
   it('create a board with different sizes', () => {
@@ -24,9 +23,9 @@ describe('GameBoardService', () => {
     sizes.forEach((size: number) => {
       const board = service.createBoard(size);
 
-      expect(board.length).toEqual(size);
-      expect(board[0].length).toEqual(size);
-      expect(board[1].length).toEqual(size);
+      expect(board.cells.length).toEqual(size);
+      expect(board.cells[0].length).toEqual(size);
+      expect(board.cells[1].length).toEqual(size);
     });
   });
 });
