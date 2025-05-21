@@ -1,1 +1,18 @@
-<p>game-controls works!</p>
+@if (status() === 'WON') {
+<div class="game-message won">
+  🎉 You won! You collected the gold and returned safely.
+</div>
+}
+@if (status() === 'LOST') {
+<div class="game-message lost">
+  💀 You died! The Wumpus or a pit got you.
+</div>
+}
+@if (status() === 'PLAYING') {
+<div class="game-controls">
+  <button class="btn btn-primary" (click)="move()">Move</button>
+  <button class="btn btn-primary" (click)="turnLeft()">Turn left</button>
+  <button class="btn btn-primary" (click)="turnRight()">Turn right</button>
+  <button class="btn btn-primary" (click)="shoot()">Shoot</button>
+</div>
+}

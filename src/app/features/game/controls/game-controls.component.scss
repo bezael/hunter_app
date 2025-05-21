@@ -1,0 +1,27 @@
+.game-controls {
+  display: flex;
+  gap: var(--spacing-4);
+  justify-content: center;
+  margin-top: var(--spacing-6);
+  padding: var(--spacing-4);
+}
+
+.game-message {
+  text-align: center;
+  padding: var(--spacing-4);
+  margin: var(--spacing-4) 0;
+  border-radius: var(--border-radius-lg);
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  box-shadow: var(--shadow-md);
+
+  &.won {
+    background-color: var(--color-success);
+    color: var(--color-white);
+  }
+
+  &.lost {
+    background-color: var(--color-error);
+    color: var(--color-white);
+  }
+}
