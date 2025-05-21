@@ -1,6 +1,7 @@
 <div class="game-board" data-testId="game-board">
   <div class="board-grid">
-    @for (row of board(); track $index) {
+
+    @for (row of state().board; track $index) {
     <div class="board-row" [attr.data-testid]="'board-row-' + $index">
       @for (cell of row; track $index) {
       <div class="cell" [class]="getCellClass(cell)" [attr.data-testid]="'board-cell-' + $index">

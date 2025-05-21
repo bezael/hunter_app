@@ -1,25 +1,24 @@
-import { Component, computed, inject, OnInit } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { StoreService } from '@app/shared/services/store/store.service';
-
+import { GameStoreService } from '@core/game/store/game-store.service';
 @Component({
   selector: 'app-game-board',
   imports: [],
   templateUrl: './game-board.component.html',
   styleUrl: './game-board.component.scss',
 })
-export class GameBoardComponent implements OnInit {
-  private readonly _store = inject(StoreService);
+export class GameBoardComponent {
+  state = computed(() => this._store.state());
+
+  private readonly _store = inject(GameStoreService);
   private readonly _router = inject(Router);
 
-  board = computed(() => this._store.board());
-  player = computed(() => this._store.player());
-  gameStatus = computed(() => this._store.gameStatus());
-
-  ngOnInit() {
-    if (!this._store.board()?.length) {
-      this._router.navigate(['/start']);
-    }
+  constructor() {
+    effect(() => {
+      if (!this._store.state().board.length) {
+        this._router.navigate(['/start']);
+      }
+    });
   }
 
   getCellClass(cell: string): string {
