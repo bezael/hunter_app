@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { StartScreenComponent } from '@app/features/start-screen/start-screen.component';
-import { StoreService } from '@app/shared/services/store/store.service';
+import { GameStoreService } from '@core/game/store/game-store.service';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 
@@ -65,7 +65,7 @@ describe('StartScreenComponent', () => {
     await render(StartScreenComponent, {
       providers: [
         { provide: Router, useValue: mockRouter },
-        { provide: StoreService, useValue: mockStoreService },
+        { provide: GameStoreService, useValue: mockStoreService },
       ],
     });
 

@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { StoreService } from '@shared/services/store/store.service';
+import { GameStoreService } from '@core/game/store/game-store.service';
 import { FormErrorComponent } from './components/form-error/form-error.component';
 import { DEFAULT_CONFIG, FormConfig } from './form.model';
 
@@ -17,7 +17,7 @@ export class StartScreenComponent implements OnInit {
 
   private readonly _fb = inject(FormBuilder);
   private readonly _router = inject(Router);
-  private readonly _store = inject(StoreService);
+  private readonly _store = inject(GameStoreService);
 
   ngOnInit(): void {
     this._initForm();
