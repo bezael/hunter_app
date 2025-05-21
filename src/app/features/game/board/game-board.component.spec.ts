@@ -48,10 +48,10 @@ describe('GameBoardComponent', () => {
     const container = screen.getByTestId('game-board');
     expect(container).toBeInTheDocument();
 
-    const rows = screen.getAllByTestId(/board-row-/g);
+    const rows = screen.getAllByTestId(/board-row-/i);
     expect(rows.length).toBe(3);
 
-    const cells = screen.getAllByTestId(/board-cell-/g);
+    const cells = screen.getAllByTestId(/board-cell-/i);
     expect(cells.length).toBe(9);
   });
 
