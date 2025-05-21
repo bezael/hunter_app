@@ -1,6 +1,7 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { GameBoardService } from '../game-board/game-board.service';
-import { GameState, INITIAL_STATE, Orientation, Position, Status } from './store.model';
+import { GameBoardService } from '@app/core/game/board/game-board.service';
+import { Direction, GameState, GameStatus, Position } from '@core/game/types';
+import { INITIAL_STATE } from './store.model';
 
 @Injectable({
   providedIn: 'root',
@@ -25,10 +26,10 @@ export class StoreService {
     }));
   }
 
-  updatePlayerOrientation(orientation: Orientation = 'NORTH') {
+  updatePlayerOrientation(direction: Direction = 'NORTH') {
     this.state.update(state => ({
       ...state,
-      player: { ...state.player, orientation },
+      player: { ...state.player, direction },
     }));
   }
 
@@ -39,7 +40,7 @@ export class StoreService {
     }));
   }
 
-  updateGameStatus(status: Status) {
+  updateGameStatus(status: GameStatus) {
     this.state.update(state => ({ ...state, gameStatus: status }));
   }
 

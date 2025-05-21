@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { GameBoardService } from '@shared/services/game-board/game-board.service';
+import { GameBoardService } from '@app/core/game/board/game-board.service';
 import { INITIAL_STATE, Position } from '@shared/services/store/store.model';
 import { StoreService } from './store.service';
 
