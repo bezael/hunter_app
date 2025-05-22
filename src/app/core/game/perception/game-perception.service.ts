@@ -43,11 +43,13 @@ export class GamePerceptionService {
     return this.isAdjacentToAnyPosition(playerPos, [targetPos], board);
   }
 
-  private isAdjacentToAnyPosition(playerPos: Position, targetPositions: Position[], board: GameState['board']): boolean {
+  private isAdjacentToAnyPosition(
+    playerPos: Position,
+    targetPositions: Position[],
+    board: GameState['board']
+  ): boolean {
     const adjacentCaves = this.getAdjacentCaves(playerPos, board);
-    return targetPositions.some(target => 
-      adjacentCaves.some(cave => this.isSamePosition(cave, target))
-    );
+    return targetPositions.some(target => adjacentCaves.some(cave => this.isSamePosition(cave, target)));
   }
 
   private getAdjacentCaves(position: Position, board: GameState['board']): Position[] {
@@ -62,7 +64,7 @@ export class GamePerceptionService {
       adjacent.push({ x, y: y + 1 });
     }
     if (connections.includes(CARDINAL_POINTS.WEST) && x > 0) {
-      adjacent.push({ x: x - 1, y }); 
+      adjacent.push({ x: x - 1, y });
     }
     if (connections.includes(CARDINAL_POINTS.EAST) && x < board.width - 1) {
       adjacent.push({ x: x + 1, y });

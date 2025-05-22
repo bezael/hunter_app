@@ -1,15 +1,19 @@
 <div class="game-board" data-testId="game-board">
   <div class="board-grid">
     @for (row of state().board.cells; track $index; let rowIndex = $index) {
-    <div class="board-row" [attr.data-testid]="'board-row-' + rowIndex">
-      @for (cell of row; track $index; let colIndex = $index) {
-      <div class="cell" [class]="getCellClass(cell, rowIndex, colIndex)" [attr.data-testid]="'board-cell-' + colIndex">
-        @if (cell !== '') {
-        <span class="icon">{{ getCellContent(cell, rowIndex, colIndex) }}</span>
+      <div class="board-row" [attr.data-testid]="'board-row-' + rowIndex">
+        @for (cell of row; track $index; let colIndex = $index) {
+          <div
+            class="cell"
+            [class]="getCellClass(cell, rowIndex, colIndex)"
+            [attr.data-testid]="'board-cell-' + colIndex"
+          >
+            @if (cell !== '') {
+              <span class="icon">{{ getCellContent(cell, rowIndex, colIndex) }}</span>
+            }
+          </div>
         }
       </div>
-      }
-    </div>
     }
   </div>
 </div>

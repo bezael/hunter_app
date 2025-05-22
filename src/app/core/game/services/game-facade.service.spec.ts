@@ -29,7 +29,7 @@ const mockGameEngineService = {
   move: jest.fn(),
   turn: jest.fn(),
   shoot: jest.fn(),
-}; 
+};
 
 describe('GameFacadeService', () => {
   let service: GameFacadeService;

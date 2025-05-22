@@ -7,7 +7,6 @@ export const CARDINAL_POINTS = {
   WEST: 'WEST',
 } as const;
 
-
 export const PERCEPTIONS = {
   STENCH: 'STENCH',
   BREEZE: 'BREEZE',
@@ -16,7 +15,6 @@ export const PERCEPTIONS = {
   BUMP: 'BUMP',
   WUMPUS: 'WUMPUS',
 } as const;
-
 
 export const SIDE = {
   LEFT: 'LEFT',
@@ -28,7 +26,6 @@ export const GAME_STATUS = {
   WON: 'WON',
   LOST: 'LOST',
 } as const;
-
 
 export const INITIAL_STATE: GameState = {
   board: {

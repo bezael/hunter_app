@@ -3,8 +3,14 @@
   <form [formGroup]="configForm" (ngSubmit)="startGame()">
     <label for="boardSize">
       Board size (n x n):
-      <input type="number" id="boardSize" formControlName="boardSize" min="4" max="10"
-        placeholder="Enter board size (4-10)" />
+      <input
+        type="number"
+        id="boardSize"
+        formControlName="boardSize"
+        min="4"
+        max="10"
+        placeholder="Enter board size (4-10)"
+      />
     </label>
     <app-form-error [show]="isFieldValid('boardSize')" message="Must be between 4 and 10." fieldId="boardSize" />
 

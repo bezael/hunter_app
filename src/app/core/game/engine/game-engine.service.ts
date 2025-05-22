@@ -66,7 +66,7 @@ export class GameEngineService {
 
   shoot(state: GameState): GameActionResult {
     const { player, wumpus } = state;
-    
+
     if (player.arrows <= 0) {
       return {
         newState: state,

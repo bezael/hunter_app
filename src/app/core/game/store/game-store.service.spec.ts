@@ -32,14 +32,14 @@ describe('GameStoreService', () => {
         height: 0,
         wells: [],
         cells: [],
-        walls: []
+        walls: [],
       },
       player: {
         position: { x: 0, y: 0 },
         cardinalPoint: CARDINAL_POINTS.NORTH,
         arrows: 3,
         isAlive: true,
-        hasGold: false
+        hasGold: false,
       },
       gameStatus: 'PLAYING',
       wumpus: {
@@ -48,9 +48,9 @@ describe('GameStoreService', () => {
       },
       gold: {
         position: { x: 0, y: 0 },
-        collected: false
+        collected: false,
       },
-      startPosition: { x: 0, y: 0 }
+      startPosition: { x: 0, y: 0 },
     };
 
     expect(
@@ -65,7 +65,7 @@ describe('GameStoreService', () => {
       height: boardSize,
       wells: [],
       cells: Array(boardSize).fill(Array(boardSize).fill('')),
-      walls: []
+      walls: [],
     };
     gameBoardService.createBoard.mockReturnValue(mockBoard);
 
@@ -78,7 +78,11 @@ describe('GameStoreService', () => {
 
   it('update player position while preserving other player properties', () => {
     const newPosition: Position = { x: 4, y: 3 };
-    service.updateFromAction({ newState: { ...service.state(), player: { ...service.state().player, position: newPosition } }, perceptions: [], gameStatus: 'PLAYING' });
+    service.updateFromAction({
+      newState: { ...service.state(), player: { ...service.state().player, position: newPosition } },
+      perceptions: [],
+      gameStatus: 'PLAYING',
+    });
 
     expect(service.state().player.position).toEqual(newPosition);
     expect(service.state().player.arrows).toEqual(INITIAL_STATE.player.arrows);

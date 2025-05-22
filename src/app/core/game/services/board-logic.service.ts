@@ -4,7 +4,12 @@ import { BoardState, CardinalPoints, Position, Side } from '../types';
 
 @Injectable({ providedIn: 'root' })
 export class BoardLogicService {
-  private readonly directions = [CARDINAL_POINTS.NORTH, CARDINAL_POINTS.EAST, CARDINAL_POINTS.SOUTH, CARDINAL_POINTS.WEST];
+  private readonly directions = [
+    CARDINAL_POINTS.NORTH,
+    CARDINAL_POINTS.EAST,
+    CARDINAL_POINTS.SOUTH,
+    CARDINAL_POINTS.WEST,
+  ];
 
   getNextPosition(pos: Position, cardinalPoint: CardinalPoints): Position {
     switch (cardinalPoint) {
@@ -18,7 +23,7 @@ export class BoardLogicService {
         return { x: pos.x - 1, y: pos.y };
     }
   }
-  
+
   rotate(current: CardinalPoints, turn: Side): CardinalPoints {
     const idx = this.directions.indexOf(current);
     if (idx === -1) {

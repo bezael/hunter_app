@@ -31,15 +31,11 @@ export class GameFacadeService {
   exit() {
     const { player, startPosition } = this.state();
 
-    if (
-      player.position.x === startPosition.x &&
-      player.position.y === startPosition.y &&
-      player.hasGold
-    ) {
+    if (player.position.x === startPosition.x && player.position.y === startPosition.y && player.hasGold) {
       this._gameStoreService.updateFromAction({
         newState: { ...this.state(), gameStatus: GAME_STATUS.WON },
         perceptions: [],
-        gameStatus: GAME_STATUS.WON
+        gameStatus: GAME_STATUS.WON,
       });
     }
   }

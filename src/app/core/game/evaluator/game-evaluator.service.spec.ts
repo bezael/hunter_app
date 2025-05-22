@@ -10,7 +10,6 @@ describe('GameEvaluatorService', () => {
     service = TestBed.inject(GameEvaluatorService);
   });
 
-
   it('return LOST when player is not alive', () => {
     const gameState: GameState = {
       player: {
@@ -18,29 +17,28 @@ describe('GameEvaluatorService', () => {
         isAlive: false,
         hasGold: false,
         cardinalPoint: CARDINAL_POINTS.NORTH,
-        arrows: 1
+        arrows: 1,
       },
       wumpus: {
         position: { x: 2, y: 2 },
-        alive: true
+        alive: true,
       },
       gold: {
         position: { x: 3, y: 3 },
-        collected: false
+        collected: false,
       },
       board: {
         width: 4,
         height: 4,
         wells: [],
         cells: Array(4).fill(Array(4).fill('')),
-        walls: []
+        walls: [],
       },
       startPosition: { x: 0, y: 0 },
-      gameStatus: GAME_STATUS.PLAYING
+      gameStatus: GAME_STATUS.PLAYING,
     };
 
     const result = service.evaluateState(gameState);
     expect(result).toBe(GAME_STATUS.LOST);
   });
-
 });
