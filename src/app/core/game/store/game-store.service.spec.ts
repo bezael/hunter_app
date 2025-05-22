@@ -69,16 +69,16 @@ describe('GameStoreService', () => {
     };
     gameBoardService.createBoard.mockReturnValue(mockBoard);
 
-    service.updateBoard(boardSize);
+    service.updateBoard(boardSize, 3);
 
     expect(service.state().board.cells.length).toBe(boardSize);
     expect(service.state().board.cells[0].length).toBe(boardSize);
-    expect(gameBoardService.createBoard).toHaveBeenCalledWith(boardSize);
+    expect(gameBoardService.createBoard).toHaveBeenCalledWith(boardSize, 3);
   });
 
   it('update player position while preserving other player properties', () => {
     const newPosition: Position = { x: 4, y: 3 };
-    service.updatePlayerPosition(newPosition);
+    service.updateFromAction({ newState: { ...service.state(), player: { ...service.state().player, position: newPosition } }, perceptions: [], gameStatus: 'PLAYING' });
 
     expect(service.state().player.position).toEqual(newPosition);
     expect(service.state().player.arrows).toEqual(INITIAL_STATE.player.arrows);
@@ -88,7 +88,11 @@ describe('GameStoreService', () => {
     const mockBoard = {
       width: 5,
       height: 5,
-      wells: [],
+      wells: [
+        { x: 0, y: 0 },
+        { x: 1, y: 1 },
+        { x: 2, y: 2 },
+      ],
       cells: [
         ['.', 'w'],
         ['P', '.'],
@@ -98,9 +102,10 @@ describe('GameStoreService', () => {
 
     gameBoardService.createBoard.mockReturnValue(mockBoard);
     const boardSize = 5;
-    service.updateBoard(boardSize);
+    const numWells = 3;
+    service.updateBoard(boardSize, numWells);
 
-    expect(gameBoardService.createBoard).toHaveBeenCalledWith(boardSize);
+    expect(gameBoardService.createBoard).toHaveBeenCalledWith(boardSize, numWells);
     expect(gameBoardService.createBoard).toHaveBeenCalledTimes(1);
   });
 });
