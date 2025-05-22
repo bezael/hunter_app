@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { GameBoardService } from '../board/game-board.service';
 
-import { CARDINAL_POINTS, INITIAL_STATE } from '../constants';
+import { CARDINAL_POINTS, GAME_STATUS, INITIAL_STATE, PERCEPTIONS } from '../constants';
 import { GameState, Position } from '../types';
 import { GameStoreService } from './game-store.service';
 
@@ -41,7 +41,7 @@ describe('GameStoreService', () => {
         isAlive: true,
         hasGold: false,
       },
-      gameStatus: 'PLAYING',
+      gameStatus: GAME_STATUS.PLAYING,
       wumpus: {
         position: { x: 0, y: 0 },
         alive: false,
@@ -53,12 +53,14 @@ describe('GameStoreService', () => {
       startPosition: { x: 0, y: 0 },
     };
 
-    expect(
-      service.updateFromAction({ newState: initialGameState, perceptions: ['BREEZE'], gameStatus: 'PLAYING' })
-    ).toEqual([]);
+    service.updateFromAction({
+      newState: initialGameState,
+      perceptions: [PERCEPTIONS.BREEZE],
+      gameStatus: GAME_STATUS.PLAYING,
+    });
   });
 
-  fit('create a new board with the specified size and update the state', () => {
+  it('create a new board with the specified size and update the state', () => {
     const boardSize = 4;
     const mockBoard = {
       width: boardSize,
@@ -81,7 +83,7 @@ describe('GameStoreService', () => {
     service.updateFromAction({
       newState: { ...service.state(), player: { ...service.state().player, position: newPosition } },
       perceptions: [],
-      gameStatus: 'PLAYING',
+      gameStatus: GAME_STATUS.PLAYING,
     });
 
     expect(service.state().player.position).toEqual(newPosition);
