@@ -1,7 +1,9 @@
-export type Direction = 'NORTH' | 'SOUTH' | 'EAST' | 'WEST';
-export type GameStatus = 'PLAYING' | 'WON' | 'LOST';
-export type Perception = 'STENCH' | 'BREEZE' | 'GLIMMER' | 'SCREAM' | 'BUMP' | 'WUMPUS';
-export type Side = 'LEFT' | 'RIGHT';
+import { CARDINAL_POINTS, GAME_STATUS, PERCEPTIONS, SIDE } from './constants';
+
+export type CardinalPoints = typeof CARDINAL_POINTS[keyof typeof CARDINAL_POINTS];
+export type GameStatus = typeof GAME_STATUS[keyof typeof GAME_STATUS];
+export type Perception = typeof PERCEPTIONS[keyof typeof PERCEPTIONS];
+export type Side = typeof SIDE[keyof typeof SIDE];
 
 export interface Position {
   x: number;
@@ -10,7 +12,7 @@ export interface Position {
 
 export interface Player {
   position: Position;
-  direction: Direction;
+  cardinalPoint: CardinalPoints;
   arrows: number;
   isAlive: boolean;
   hasGold: boolean;
