@@ -26,7 +26,16 @@ export class GameStoreService {
 
   updateBoard(boardSize: number, numWells: number) {
     const newBoard = this._gameBoardService.createBoard(boardSize, numWells);
-    this._state.update(state => ({ ...state, board: newBoard }));
+    const startPosition = { x: 0, y: boardSize - 1 };
+    this._state.update(state => ({
+      ...state,
+      board: newBoard,
+      player: {
+        ...state.player,
+        position: startPosition,
+      },
+      startPosition,
+    }));
   }
 
   updateArrows(arrows: number) {
