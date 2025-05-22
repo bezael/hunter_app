@@ -10,7 +10,7 @@ describe('GameBoardService', () => {
 
   it('create an empty board with the specified size', () => {
     const boardSize = 5;
-    const board = service.createBoard(boardSize);
+    const board = service.createBoard(boardSize, 1);
 
     expect(board.cells.length).toEqual(boardSize);
     expect(board.cells[0].length).toEqual(boardSize);
@@ -21,7 +21,7 @@ describe('GameBoardService', () => {
     const sizes = [2, 3, 4, 5];
 
     sizes.forEach((size: number) => {
-      const board = service.createBoard(size);
+      const board = service.createBoard(size, 2);
 
       expect(board.cells.length).toEqual(size);
       expect(board.cells[0].length).toEqual(size);

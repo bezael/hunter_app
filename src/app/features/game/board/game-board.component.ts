@@ -1,9 +1,12 @@
 import { Component, computed, effect, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { CARDINAL_POINTS } from '@core/game/constants';
 import { GameStoreService } from '@core/game/store/game-store.service';
+import { GameControlsComponent } from '@features/game/controls/game-controls.component';
+
 @Component({
   selector: 'app-game-board',
-  imports: [],
+  imports: [GameControlsComponent],
   templateUrl: './game-board.component.html',
   styleUrl: './game-board.component.scss',
 })
@@ -15,15 +18,18 @@ export class GameBoardComponent {
 
   constructor() {
     effect(() => {
-      if (!this._store.state().board.length) {
+      if (!this._store.state().board.cells.length) {
         this._router.navigate(['/start']);
       }
     });
   }
 
-  getCellClass(cell: string): string {
+  getCellClass(cell: string, rowIndex: number, colIndex: number): string {
     const classes = ['cell'];
+    const player = this.state().player;
+    const isPlayerHere = player.position.x === colIndex && player.position.y === rowIndex;
 
+    if (isPlayerHere) classes.push('player');
     if (cell === 'V') classes.push('visited');
     if (cell === 'B') classes.push('breeze');
     if (cell === 'S') classes.push('stench');
@@ -34,20 +40,27 @@ export class GameBoardComponent {
     return classes.join(' ');
   }
 
-  getCellContent(cell: string): string {
-    switch (cell) {
-      case 'G':
-        return '💰';
-      case 'P':
-        return '🕳️';
-      case 'W':
-        return '👾';
-      case 'B':
-        return '💨';
-      case 'S':
-        return '👃';
-      default:
-        return '';
+  getCellContent(cell: string, rowIndex: number, colIndex: number): string {
+    const player = this.state().player;
+    const isPlayerHere = player.position.x === colIndex && player.position.y === rowIndex;
+
+    if (isPlayerHere) {
+      switch (player.cardinalPoint) {
+        case CARDINAL_POINTS.NORTH:
+          return '⬆️';
+        case CARDINAL_POINTS.SOUTH:
+          return '⬇️';
+        case CARDINAL_POINTS.EAST:
+          return '➡️';
+        case CARDINAL_POINTS.WEST:
+          return '⬅️';
+        default:
+          return '';
+      }
     }
+    console.log('Cell value:', cell, 'at position:', { rowIndex, colIndex });
+
+    return '';
   }
+
 }
