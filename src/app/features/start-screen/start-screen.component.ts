@@ -28,7 +28,7 @@ export class StartScreenComponent implements OnInit {
     if (this.configForm.valid) {
       const config = this.configForm.getRawValue();
       this._store.updateArrows(config.numArrows);
-      this._store.updateBoard(config.boardSize);
+      this._store.updateBoard(config.boardSize, config.numWells);
       this._router.navigate(['/game']);
     }
   }

@@ -62,7 +62,7 @@ describe('StartScreenComponent', () => {
     const startGameButton = screen.getByRole('button', { name: /start game/i });
     await user.click(startGameButton);
 
-    expect(mockGameStoreService.updateBoard).toHaveBeenCalledWith(4);
+    expect(mockGameStoreService.updateBoard).toHaveBeenCalledWith(4, 3);
     expect(mockGameStoreService.updateArrows).toHaveBeenCalledWith(1);
 
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/game']);
