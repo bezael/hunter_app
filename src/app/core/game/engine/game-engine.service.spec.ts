@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { BoardLogicService } from '../services/board-logic.service';
+import { CARDINAL_POINTS, GAME_STATUS, PERCEPTIONS, SIDE } from '../constants';
 import { GameEvaluatorService } from '../evaluator/game-evaluator.service';
 import { GamePerceptionService } from '../perception/game-perception.service';
-import { CARDINAL_POINTS, GAME_STATUS } from '../constants';
+import { BoardLogicService } from '../services/board-logic.service';
 import { GameState } from '../types';
 import { GameEngineService } from './game-engine.service';
 
-const mockGameState: GameState = {
+const initialGameState: GameState = {
   player: {
     position: { x: 1, y: 1 },
     cardinalPoint: CARDINAL_POINTS.NORTH,
@@ -75,23 +75,23 @@ describe('GameEngineService', () => {
       mockBoardLogicService.getNextPosition.mockReturnValue({ x: 1, y: 0 });
       mockBoardLogicService.isWall.mockReturnValue(true);
 
-      const result = service.move(mockGameState);
+      const result = service.move(initialGameState);
 
-      expect(result.perceptions).toContain('BUMP');
-      expect(result.newState).toEqual(mockGameState);
+      expect(result.perceptions).toContain(PERCEPTIONS.BUMP);
+      expect(result.newState).toEqual(initialGameState);
     });
 
     it('move player and update state when no wall is hit', () => {
       const nextPosition = { x: 1, y: 1 };
       mockBoardLogicService.getNextPosition.mockReturnValue(nextPosition);
       mockBoardLogicService.isWall.mockReturnValue(false);
-      mockEvaluatorService.checkWumpusEncounter.mockReturnValue(mockGameState);
-      mockEvaluatorService.checkWellFall.mockReturnValue(mockGameState);
-      mockEvaluatorService.checkGoldCollection.mockReturnValue(mockGameState);
+      mockEvaluatorService.checkWumpusEncounter.mockReturnValue(initialGameState);
+      mockEvaluatorService.checkWellFall.mockReturnValue(initialGameState);
+      mockEvaluatorService.checkGoldCollection.mockReturnValue(initialGameState);
       mockEvaluatorService.evaluateState.mockReturnValue(GAME_STATUS.PLAYING);
-      mockPerceptionService.getPerceptions.mockReturnValue(['STENCH']);
+      mockPerceptionService.getPerceptions.mockReturnValue([PERCEPTIONS.STENCH]);
 
-      const result = service.move(mockGameState);
+      const result = service.move(initialGameState);
 
       expect(result.newState.player.position).toEqual(nextPosition);
       expect(mockEvaluatorService.checkWumpusEncounter).toHaveBeenCalled();
@@ -106,10 +106,10 @@ describe('GameEngineService', () => {
       mockEvaluatorService.evaluateState.mockReturnValue(GAME_STATUS.PLAYING);
       mockPerceptionService.getPerceptions.mockReturnValue([]);
 
-      const result = service.turn(mockGameState, 'RIGHT');
+      const result = service.turn(initialGameState, SIDE.RIGHT);
 
       expect(result.newState.player.cardinalPoint).toBe(CARDINAL_POINTS.EAST);
-      expect(mockBoardLogicService.rotate).toHaveBeenCalledWith(CARDINAL_POINTS.NORTH, 'RIGHT');
+      expect(mockBoardLogicService.rotate).toHaveBeenCalledWith(CARDINAL_POINTS.NORTH, SIDE.RIGHT);
     });
 
     it('turn player to the left', () => {
@@ -117,18 +117,18 @@ describe('GameEngineService', () => {
       mockEvaluatorService.evaluateState.mockReturnValue(GAME_STATUS.PLAYING);
       mockPerceptionService.getPerceptions.mockReturnValue([]);
 
-      const result = service.turn(mockGameState, 'LEFT');
+      const result = service.turn(initialGameState, SIDE.LEFT);
 
       expect(result.newState.player.cardinalPoint).toBe(CARDINAL_POINTS.WEST);
-      expect(mockBoardLogicService.rotate).toHaveBeenCalledWith(CARDINAL_POINTS.NORTH, 'LEFT');
+      expect(mockBoardLogicService.rotate).toHaveBeenCalledWith(CARDINAL_POINTS.NORTH, SIDE.LEFT);
     });
   });
 
   describe('shoot', () => {
     it('not shoot when player has no arrows', () => {
       const stateWithNoArrows = {
-        ...mockGameState,
-        player: { ...mockGameState.player, arrows: 0 },
+        ...initialGameState,
+        player: { ...initialGameState.player, arrows: 0 },
       };
 
       const result = service.shoot(stateWithNoArrows);
@@ -141,7 +141,7 @@ describe('GameEngineService', () => {
       mockBoardLogicService.checkWumpusInLine.mockReturnValue(true);
       mockEvaluatorService.evaluateState.mockReturnValue(GAME_STATUS.PLAYING);
 
-      const result = service.shoot(mockGameState);
+      const result = service.shoot(initialGameState);
 
       expect(result.newState.player.arrows).toBe(0);
       expect(result.newState.wumpus.alive).toBeFalsy();
@@ -152,7 +152,7 @@ describe('GameEngineService', () => {
       mockBoardLogicService.checkWumpusInLine.mockReturnValue(false);
       mockEvaluatorService.evaluateState.mockReturnValue(GAME_STATUS.PLAYING);
 
-      const result = service.shoot(mockGameState);
+      const result = service.shoot(initialGameState);
 
       expect(result.newState.player.arrows).toBe(0);
       expect(result.newState.wumpus.alive).toBeTruthy();

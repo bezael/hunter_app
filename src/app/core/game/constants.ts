@@ -51,5 +51,5 @@ export const INITIAL_STATE: GameState = {
     collected: false,
   },
   startPosition: { x: 0, y: 0 },
-  gameStatus: 'PLAYING',
+  gameStatus: GAME_STATUS.PLAYING,
 } as const;

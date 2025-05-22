@@ -11,7 +11,7 @@ describe('GameEvaluatorService', () => {
   });
 
   it('return LOST when player is not alive', () => {
-    const gameState: GameState = {
+    const initialGameState: GameState = {
       player: {
         position: { x: 1, y: 1 },
         isAlive: false,
@@ -38,7 +38,7 @@ describe('GameEvaluatorService', () => {
       gameStatus: GAME_STATUS.PLAYING,
     };
 
-    const result = service.evaluateState(gameState);
+    const result = service.evaluateState(initialGameState);
     expect(result).toBe(GAME_STATUS.LOST);
   });
 });
