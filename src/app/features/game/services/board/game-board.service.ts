@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BoardState, Position } from '../types';
-import { CARDINAL_POINTS } from '../constants';
+import { CARDINAL_POINTS } from '@core/utils/constants';
+import { BoardState, Position } from '../../types';
+
 @Injectable({ providedIn: 'root' })
 export class GameBoardService {
   createBoard(boardSize: number, numWells: number): BoardState {

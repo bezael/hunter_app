@@ -1,4 +1,4 @@
-import { GameState } from './types';
+import { GameState } from '@features/game/types';
 
 export const CARDINAL_POINTS = {
   NORTH: 'NORTH',

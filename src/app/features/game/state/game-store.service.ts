@@ -1,6 +1,6 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { GameBoardService } from '@app/core/game/board/game-board.service';
-import { INITIAL_STATE } from '../constants';
+import { INITIAL_STATE } from '@core/utils/constants';
+import { GameBoardService } from '../services/board/game-board.service';
 import { GameActionResult, GameState, GameStatus, Perception } from '../types';
 
 @Injectable({

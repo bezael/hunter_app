@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { GameStoreService } from '@core/game/store/game-store.service';
+import { GameStoreService } from '../game/state/game-store.service';
 import { FormErrorComponent } from './components/form-error/form-error.component';
 import { DEFAULT_CONFIG, FormConfig } from './form.model';
 

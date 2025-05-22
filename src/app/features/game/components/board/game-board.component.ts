@@ -1,8 +1,8 @@
 import { Component, computed, effect, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { CARDINAL_POINTS } from '@core/game/constants';
-import { GameStoreService } from '@core/game/store/game-store.service';
-import { GameControlsComponent } from '@features/game/controls/game-controls.component';
+import { CARDINAL_POINTS } from '@core/utils/constants';
+import { GameControlsComponent } from '../controls/game-controls.component';
+import { GameStoreService } from '../state/game-store.service';
 
 @Component({
   selector: 'app-game-board',

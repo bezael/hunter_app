@@ -1,14 +1,14 @@
 import { Router } from '@angular/router';
-import { INITIAL_STATE } from '@app/core/game/constants';
-import { GameBoardComponent } from '@app/features/game/board/game-board.component';
-import { GameStoreService } from '@core/game/store/game-store.service';
+import { INITIAL_STATE } from '@core/utils/constants';
 import { render, screen } from '@testing-library/angular';
+import { GameStoreService } from '../state/game-store.service';
+import { GameBoardComponent } from './game-board.component';
 
 const fakeInitialBoard = [
   ['', '', '', ''],
   ['', 'G', '', ''],
   ['', '', '', 'P'],
-  ['', '', '', ''],
+  ['', '', '', ''], 
 ];
 
 const mockGameStoreService = {

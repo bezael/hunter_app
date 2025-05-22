@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { CARDINAL_POINTS, GAME_STATUS } from '@app/core/game/constants';
-import { GameState } from '../types';
+import { CARDINAL_POINTS, GAME_STATUS } from '@core/utils/constants';
+import { GameState } from '../../types';
 import { GameEvaluatorService } from './game-evaluator.service';
 
 describe('GameEvaluatorService', () => {
