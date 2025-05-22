@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { GameBoardService } from '../board/game-board.service';
 
-import { INITIAL_STATE } from '../constants';
+import { CARDINAL_POINTS, INITIAL_STATE } from '../constants';
 import { GameState, Position } from '../types';
 import { GameStoreService } from './game-store.service';
 
@@ -36,7 +36,7 @@ describe('GameStoreService', () => {
       },
       player: {
         position: { x: 0, y: 0 },
-        direction: 'NORTH',
+        cardinalPoint: CARDINAL_POINTS.NORTH,
         arrows: 3,
         isAlive: true,
         hasGold: false
