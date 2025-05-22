@@ -1,6 +1,6 @@
 export type Direction = 'NORTH' | 'SOUTH' | 'EAST' | 'WEST';
 export type GameStatus = 'PLAYING' | 'WON' | 'LOST';
-export type Perception = 'STENCH' | 'BREEZE' | 'GLIMMER' | 'SCREAM' | 'BUMP';
+export type Perception = 'STENCH' | 'BREEZE' | 'GLIMMER' | 'SCREAM' | 'BUMP' | 'WUMPUS';
 export type Side = 'LEFT' | 'RIGHT';
 
 export interface Position {

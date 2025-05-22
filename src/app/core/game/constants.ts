@@ -1,4 +1,5 @@
-import { GameState } from './types';
+import { Direction, GameState } from './types';
+export const ALL_DIRECTIONS: Direction[] = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
 
 export const INITIAL_STATE: GameState = {
   board: {
