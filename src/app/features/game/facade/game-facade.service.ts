@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
-import { GAME_STATUS } from '../constants';
-import { GameEngineService } from '../engine/game-engine.service';
-import { GameStoreService } from '../store/game-store.service';
+import { GAME_STATUS } from '@core/utils/constants';
+import { GameEngineService } from '../services/engine/game-engine.service';
+import { GameStoreService } from '../state/game-store.service';
 import { Side } from '../types';
 
 @Injectable({ providedIn: 'root' })

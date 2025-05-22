@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-
-import { CARDINAL_POINTS, PERCEPTIONS } from '../constants';
-import { CardinalPoints, GameState, Perception, Position } from '../types';
+import { CARDINAL_POINTS, PERCEPTIONS } from '@core/utils/constants';
+import { CardinalPoints, GameState, Perception, Position } from '../../types';
 
 @Injectable({
   providedIn: 'root',

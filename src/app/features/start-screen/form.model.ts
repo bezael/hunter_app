@@ -4,7 +4,7 @@ export const DEFAULT_CONFIG: GameConfig = {
   boardSize: 4,
   numWells: 3,
   numArrows: 1,
-};
+} as const;
 
 export interface GameConfig {
   boardSize: number;

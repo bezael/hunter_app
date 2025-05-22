@@ -9,7 +9,7 @@
             [attr.data-testid]="'board-cell-' + colIndex"
           >
             @if (cell !== '') {
-              <span class="icon">{{ getCellContent(cell, rowIndex, colIndex) }}</span>
+              <span class="icon">{{ getCellContent(rowIndex, colIndex) }}</span>
             }
           </div>
         }

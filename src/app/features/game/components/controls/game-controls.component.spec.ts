@@ -1,9 +1,9 @@
 import { computed } from '@angular/core';
-import { INITIAL_STATE } from '@app/core/game/constants';
-import { GameFacadeService } from '@app/core/game/services/game-facade.service';
-import { GameStoreService } from '@app/core/game/store/game-store.service';
-import { GameState, GameStatus, Perception } from '@app/core/game/types';
+import { INITIAL_STATE } from '@core/utils/constants';
 import { fireEvent, render, screen } from '@testing-library/angular';
+import { GameFacadeService } from '../../facade/game-facade.service';
+import { GameStoreService } from '../../state/game-store.service';
+import { GameState, GameStatus, Perception } from '../../types';
 import { GameControlsComponent } from './game-controls.component';
 
 const fakeInitialBoard = [

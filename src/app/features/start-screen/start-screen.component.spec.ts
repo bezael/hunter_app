@@ -1,10 +1,11 @@
 import { Router } from '@angular/router';
+import { GameStoreService } from '@features/game/state/game-store.service';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { StartScreenComponent } from './start-screen.component';
 
 const mockGameStoreService = {
-  resetGame: jest.fn(), 
+  resetGame: jest.fn(),
   updateArrows: jest.fn(),
   updateBoard: jest.fn(),
 };

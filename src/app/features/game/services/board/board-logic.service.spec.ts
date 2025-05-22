@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { CARDINAL_POINTS, SIDE } from '@app/core/game/constants';
+import { CARDINAL_POINTS, SIDE } from '@core/utils/constants';
 import { BoardLogicService } from './board-logic.service';
 
 describe('BoardLogicService', () => {

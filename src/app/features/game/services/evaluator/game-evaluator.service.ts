@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { GAME_STATUS } from '@app/core/game/constants';
-import { GameState, GameStatus } from '../types';
+import { GAME_STATUS } from '@core/utils/constants';
+import { GameState, GameStatus } from '../../types';
 
 @Injectable({
   providedIn: 'root',

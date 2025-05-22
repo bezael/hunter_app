@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { CARDINAL_POINTS, GAME_STATUS, PERCEPTIONS, SIDE } from '../constants';
+import { CARDINAL_POINTS, GAME_STATUS, PERCEPTIONS, SIDE } from '@core/utils/constants';
 import { GameEvaluatorService } from '../evaluator/game-evaluator.service';
 import { GamePerceptionService } from '../perception/game-perception.service';
-import { BoardLogicService } from '../services/board-logic.service';
-import { GameState } from '../types';
+import { BoardLogicService } from '../board/board-logic.service';
+import { GameState } from '../../types';
 import { GameEngineService } from './game-engine.service';
 
 const initialGameState: GameState = {

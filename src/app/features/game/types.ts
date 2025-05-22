@@ -1,4 +1,4 @@
-import { CARDINAL_POINTS, GAME_STATUS, PERCEPTIONS, SIDE } from './constants';
+import { CARDINAL_POINTS, GAME_STATUS, PERCEPTIONS, SIDE } from '@core/utils/constants';
 
 export type CardinalPoints = (typeof CARDINAL_POINTS)[keyof typeof CARDINAL_POINTS];
 export type GameStatus = (typeof GAME_STATUS)[keyof typeof GAME_STATUS];

@@ -1,8 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { GameBoardService } from '../board/game-board.service';
-
-import { CARDINAL_POINTS, GAME_STATUS, INITIAL_STATE, PERCEPTIONS } from '../constants';
+import { CARDINAL_POINTS, GAME_STATUS, INITIAL_STATE, PERCEPTIONS } from '@core/utils/constants';
 import { GameState, Position } from '../types';
+import { GameBoardService } from '../services/board/game-board.service';
 import { GameStoreService } from './game-store.service';
 
 const mockGameBoardService = {

@@ -1,6 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
-import { GameFacadeService } from '../facade/game-facade.service';
-import { GameStoreService } from '../state/game-store.service';
+import { GameFacadeService } from '../../facade/game-facade.service';
+import { GameStoreService } from '../../state/game-store.service';
 
 @Component({
   selector: 'app-game-controls',

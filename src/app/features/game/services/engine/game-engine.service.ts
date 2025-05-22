@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { PERCEPTIONS } from '@app/core/game/constants';
-import { BoardLogicService } from '@app/core/game/services/board-logic.service';
-import { GameEvaluatorService } from '@core/game/evaluator/game-evaluator.service';
-import { GamePerceptionService } from '@core/game/perception/game-perception.service';
-import { GameActionResult, GameState, Perception, Side } from '../types';
+import { PERCEPTIONS } from '@core/utils/constants';
+import { BoardLogicService } from '../board/board-logic.service';
+import { GameEvaluatorService } from '../evaluator/game-evaluator.service';
+import { GamePerceptionService } from '../perception/game-perception.service';
+import { GameActionResult, GameState, Perception, Side } from '../../types';
 
 @Injectable({
   providedIn: 'root',

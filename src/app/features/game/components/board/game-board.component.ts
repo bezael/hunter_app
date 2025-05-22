@@ -1,8 +1,8 @@
 import { Component, computed, effect, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CARDINAL_POINTS } from '@core/utils/constants';
+import { GameStoreService } from '../../state/game-store.service';
 import { GameControlsComponent } from '../controls/game-controls.component';
-import { GameStoreService } from '../state/game-store.service';
 
 @Component({
   selector: 'app-game-board',
@@ -40,7 +40,7 @@ export class GameBoardComponent {
     return classes.join(' ');
   }
 
-  getCellContent(cell: string, rowIndex: number, colIndex: number): string {
+  getCellContent(rowIndex: number, colIndex: number): string {
     const player = this.state().player;
     const isPlayerHere = player.position.x === colIndex && player.position.y === rowIndex;
 
@@ -58,7 +58,6 @@ export class GameBoardComponent {
           return '';
       }
     }
-    console.log('Cell value:', cell, 'at position:', { rowIndex, colIndex });
 
     return '';
   }
