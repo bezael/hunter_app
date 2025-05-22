@@ -3,7 +3,7 @@ import { CARDINAL_POINTS, GAME_STATUS, INITIAL_STATE } from '../constants';
 import { GameEngineService } from '../engine/game-engine.service';
 import { GameStoreService } from '../store/game-store.service';
 import { GameActionResult, Side } from '../types';
-import { GameFacadeService } from './game-facade.service';
+import { GameFacadeService } from '../services/game-facade.service';
 
 const fakeState = {
   ...INITIAL_STATE,
