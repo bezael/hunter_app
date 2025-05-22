@@ -6,11 +6,24 @@
   padding: var(--spacing-4);
 }
 
+.game-info {
+  text-align: center;
+  margin: var(--spacing-4) 0;
+  
+  .remaining-shots {
+    display: inline-block;
+    padding: var(--spacing-2) var(--spacing-4);
+    background-color: var(--color-primary-light);
+    color: var(--color-white);
+    border-radius: var(--border-radius-lg);
+    font-weight: 500;
+  }
+}
+
 .game-message {
   text-align: center;
   padding: var(--spacing-4);
-  margin: var(--spacing-4) 0;
-  border-radius: var(--border-radius-lg);
+  margin: var(--spacing-8) 0;
   font-size: var(--font-size-lg);
   font-weight: 500;
   box-shadow: var(--shadow-md);
@@ -23,5 +36,23 @@
   &.lost {
     background-color: var(--color-error);
     color: var(--color-white);
+  }
+
+  &.perceptions {
+    background-color: var(--color-gray-100);
+    color: var(--color-gray-900);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+    justify-content: center;
+    align-items: center;
+
+    .perception-item {
+      background-color: var(--color-white);
+      padding: var(--spacing-2) var(--spacing-3);
+      border-radius: var(--border-radius-base);
+      box-shadow: var(--shadow-sm);
+      font-size: var(--font-size-base);
+    }
   }
 }

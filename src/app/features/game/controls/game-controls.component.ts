@@ -9,9 +9,10 @@ import { GameStoreService } from '@app/core/game/store/game-store.service';
 })
 export class GameControlsComponent {
   status = computed(() => this._gameStoreService.gameStatus());
+  perceptions = computed(() => this._gameStoreService.currentPerceptions());
+  remainingShots = computed(() => this._gameStoreService.state().player.arrows);
 
   private readonly _gameStoreService = inject(GameStoreService);
-
   private readonly _gameFacadeService = inject(GameFacadeService);
 
   move() {
