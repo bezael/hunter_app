@@ -2,6 +2,10 @@
 
 Este proyecto implementa una versión del clásico juego *Hunt the Wumpus* como SPA en Angular, siguiendo las especificaciones proporcionadas en la prueba técnica.
 
+## Demo en vivo
+
+🎮 **Aplicación en producción:** [https://hunter-app-phi.vercel.app/](https://hunter-app-phi.vercel.app/)
+
 ## Instalación
 
 **Versiones compatibles de Node.js:**  
